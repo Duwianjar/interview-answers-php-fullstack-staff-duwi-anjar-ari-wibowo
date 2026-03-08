@@ -242,3 +242,18 @@ Expected grouping example:
 - Convert each word into a canonical key by sorting its letters.
 - Use the sorted key as bucket/group identifier.
 - Words with the same key are stored in the same group.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Initialize empty groups map"]
+    B --> C["For each word"]
+    C --> D["Split word to chars"]
+    D --> E["Sort chars"]
+    E --> F["Join chars as key"]
+    F --> G["Append word to groups[key]"]
+    G --> C
+    C --> H["Return groups values"]
+    H --> I["End"]
+```

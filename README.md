@@ -161,3 +161,26 @@ Output:
 Input: [100, 4, 200, 1, 3, 2, 2, 5, 6]
 Longest consecutive sequence: [1, 2, 3, 4, 5, 6]
 ```
+
+## Q4 - Job Sequencing for Maximum Profit
+
+### Problem Explanation
+
+Each job has:
+- `id`
+- `deadline`
+- `profit`
+
+Rules:
+- Each job takes exactly 1 day.
+- Only 1 job can be done per day.
+- A job contributes profit only if scheduled on or before its deadline.
+
+Goal:
+- Choose and schedule jobs to maximize total profit.
+
+### Approach Summary
+
+- Sort jobs by profit descending.
+- For each job, place it on the latest available day not exceeding its deadline.
+- This keeps earlier slots available for other jobs and maximizes total profit.

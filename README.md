@@ -109,3 +109,20 @@ Output summary:
 - First two combinations found by DFS order:
   - `[5, 6, 14, 15]`
   - `[5, 6, 15, 10, 4]`
+
+## Q3 - Longest Consecutive Sequence
+
+### Problem Explanation
+
+Given an unsorted integer array, find the longest sequence of consecutive numbers without counting duplicates more than once.
+Input used:
+- `[100, 4, 200, 1, 3, 2, 2, 5, 6]`
+
+Expected longest sequence:
+- `[1, 2, 3, 4, 5, 6]`
+
+### Approach Summary
+
+- Put all numbers into a set-like map to remove duplicate effect and allow fast lookup.
+- Only start counting from numbers that do not have a predecessor (`num-1`).
+- Expand forward (`num+1`) to compute sequence length.

@@ -221,3 +221,24 @@ Case 1 max profit: 60
 Case 2 sequence: [C, A, E]
 Case 2 max profit: 142
 ```
+
+## Q5 - Group Anagrams
+
+### Problem Explanation
+
+Given a list of words, group words that are anagrams.
+Anagrams have exactly the same letters with different order.
+
+Input used:
+- `["bat", "tab", "tap", "pat", "cat"]`
+
+Expected grouping example:
+- `["bat", "tab"]`
+- `["tap", "pat"]`
+- `["cat"]`
+
+### Approach Summary
+
+- Convert each word into a canonical key by sorting its letters.
+- Use the sorted key as bucket/group identifier.
+- Words with the same key are stored in the same group.

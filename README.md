@@ -95,3 +95,17 @@ flowchart LR
     L --> M["Output all valid combinations"]
     M --> N["End"]
 ```
+
+### Result
+
+Run:
+
+```bash
+php q2_combination_sum.php
+```
+
+Output summary:
+- Total combinations: `24`
+- First two combinations found by DFS order:
+  - `[5, 6, 14, 15]`
+  - `[5, 6, 15, 10, 4]`

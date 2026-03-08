@@ -1,33 +1,81 @@
-# Interview Answers - PHP Fullstack Staff - Duwi Anjar Ari Wibowo
+# Jawaban Interview - Staff PHP Fullstack - Duwi Anjar Ari Wibowo
 
-Name: Duwi Anjar Ari Wibowo  
+Nama: Duwi Anjar Ari Wibowo  
 Email: duwianjarariwibowo@gmail.com  
-Phone: 082220649676
+No. HP: 082220649676
 
-## Environment
+## Keterangan Proyek
 
-- Language: PHP
-- PHP version used: 8.4.17 (CLI)
+Repository ini berisi jawaban soal interview programmer menggunakan PHP, meliputi Q1 sampai Q5.
 
-## Q1 - Largest Palindrome Product (3-digit x 3-digit)
+## Struktur Folder
 
-### Problem Explanation
+```text
+LIVECODEPHP/
+├── README.md
+├── interview_tbglobal.php
+├── q1_palindrome.php
+├── q2_combination_sum.php
+├── q3_longest_consecutive.php
+├── q4_job_sequencing.php
+├── q5_group_anagram.php
+└── docs/
+    └── logic-diagrams.md
+```
 
-A palindrome number reads the same from left to right and right to left.
-Examples:
+## Versi Lingkungan
+
+- Bahasa: PHP
+- Versi PHP saat pengerjaan/pengujian: `PHP 8.4.17 (CLI)`
+
+## Cara Menjalankan
+
+Jalankan per soal:
+
+```bash
+php q1_palindrome.php
+php q2_combination_sum.php
+php q3_longest_consecutive.php
+php q4_job_sequencing.php
+php q5_group_anagram.php
+```
+
+Atau jalankan semua soal sekaligus:
+
+```bash
+php interview_tbglobal.php
+```
+
+## Format Diagram
+
+Diagram logika pada README ini menggunakan **Mermaid Flowchart** (`flowchart LR`).
+
+- Di GitHub: diagram tampil otomatis.
+- Di VSCodium/VS Code:
+  - Buka Markdown Preview (`Ctrl+Shift+V` atau `Cmd+Shift+V` di macOS).
+  - Pastikan extension `Markdown Preview Mermaid Support` (`bierner.markdown-mermaid`) aktif.
+  - Jika belum tampil, jalankan `Developer: Reload Window`.
+
+## Ringkasan Jawaban
+
+### 1) `q1_palindrome.php`
+
+#### Penjelasan Soal
+Palindrome adalah angka yang sama saat dibaca dari depan maupun belakang.
+
+Contoh:
 - Palindrome: `121`, `1331`, `9009`
-- Not palindrome: `123`, `9012`
+- Bukan palindrome: `123`, `9012`
 
-Task:
-- Find the largest palindrome produced by multiplying two 3-digit numbers (`100` to `999`).
+Tugas:
+- Cari palindrome terbesar dari hasil perkalian dua angka 3 digit (`100` sampai `999`).
 
-### Approach Summary
+#### Ringkasan Proses
+- Cek semua pasangan perkalian 3 digit.
+- Cek apakah hasilnya palindrome.
+- Simpan nilai palindrome terbesar beserta faktornya.
 
-- Check all multiplication pairs of 3-digit numbers.
-- Keep only products that are palindrome.
-- Track the largest palindrome value found.
-
-### Logic Diagram (Mermaid)
+#### Diagram Logika
 
 ```mermaid
 flowchart LR
@@ -45,37 +93,37 @@ flowchart LR
     I --> J["End"]
 ```
 
-### Result
-
-Run:
+#### Hasil
 
 ```bash
 php q1_palindrome.php
 ```
-
-Output:
 
 ```text
 Largest palindrome: 906609
 Factors: 993 x 913
 ```
 
-## Q2 - Combination Sum (Use each element at most once)
+---
 
-### Problem Explanation
+### 2) `q2_combination_sum.php`
 
-Given an integer array and an integer target `K`, find all unique combinations where the sum equals `K`.
-Input used:
+#### Penjelasan Soal
+Diberikan array integer dan target `K`, cari semua kombinasi elemen yang jumlahnya tepat sama dengan `K`.
+
+Input yang dipakai:
 - `array = [5, 6, 14, 15, 18, 20, 10, 4, 3, 9, 13]`
 - `K = 40`
 
-### Approach Summary
+#### Ringkasan Proses
+- Gunakan backtracking: tiap angka punya 2 opsi (dipakai / dilewati).
+- Jika `sum == 40`, kombinasi disimpan.
+- Jika `sum > 40`, cabang dihentikan.
+- Urutan DFS membuat kombinasi awal yang muncul antara lain:
+  - `[5, 6, 14, 15]`
+  - `[5, 6, 15, 10, 4]`
 
-- Use backtracking with two choices at every index: pick or skip.
-- Save combination when current sum is exactly `40`.
-- Stop a branch when sum becomes greater than `40`.
-
-### Logic Diagram (Mermaid)
+#### Diagram Logika
 
 ```mermaid
 flowchart LR
@@ -96,38 +144,35 @@ flowchart LR
     M --> N["End"]
 ```
 
-### Result
-
-Run:
+#### Hasil
 
 ```bash
 php q2_combination_sum.php
 ```
 
-Output summary:
-- Total combinations: `24`
-- First two combinations found by DFS order:
-  - `[5, 6, 14, 15]`
-  - `[5, 6, 15, 10, 4]`
+Ringkasan output:
+- Total kombinasi valid: `24`
 
-## Q3 - Longest Consecutive Sequence
+---
 
-### Problem Explanation
+### 3) `q3_longest_consecutive.php`
 
-Given an unsorted integer array, find the longest sequence of consecutive numbers without counting duplicates more than once.
-Input used:
+#### Penjelasan Soal
+Diberikan array angka acak, cari urutan angka berurutan terpanjang (consecutive) tanpa efek duplikasi.
+
+Input:
 - `[100, 4, 200, 1, 3, 2, 2, 5, 6]`
 
-Expected longest sequence:
+Output target:
 - `[1, 2, 3, 4, 5, 6]`
 
-### Approach Summary
+#### Ringkasan Proses
+- Simpan angka ke set agar lookup cepat dan duplikasi terabaikan.
+- Angka jadi kandidat awal jika `num-1` tidak ada.
+- Dari kandidat awal, lanjut cek `num+1`, `num+2`, dst untuk hitung panjang urutan.
+- Urutan terpanjang pada input ini berasal dari angka awal `1`.
 
-- Put all numbers into a set-like map to remove duplicate effect and allow fast lookup.
-- Only start counting from numbers that do not have a predecessor (`num-1`).
-- Expand forward (`num+1`) to compute sequence length.
-
-### Logic Diagram (Mermaid)
+#### Diagram Logika
 
 ```mermaid
 flowchart LR
@@ -147,45 +192,49 @@ flowchart LR
     K --> L["End"]
 ```
 
-### Result
-
-Run:
+#### Hasil
 
 ```bash
 php q3_longest_consecutive.php
 ```
-
-Output:
 
 ```text
 Input: [100, 4, 200, 1, 3, 2, 2, 5, 6]
 Longest consecutive sequence: [1, 2, 3, 4, 5, 6]
 ```
 
-## Q4 - Job Sequencing for Maximum Profit
+---
 
-### Problem Explanation
+### 4) `q4_job_sequencing.php`
 
-Each job has:
-- `id`
-- `deadline`
-- `profit`
+#### Penjelasan Soal
+Setiap job punya `deadline` dan `profit`.
 
-Rules:
-- Each job takes exactly 1 day.
-- Only 1 job can be done per day.
-- A job contributes profit only if scheduled on or before its deadline.
+Aturan:
+- 1 job selesai dalam 1 hari.
+- Dalam 1 hari hanya boleh 1 job.
+- Profit dihitung jika job dijadwalkan sebelum/tepat deadline.
 
-Goal:
-- Choose and schedule jobs to maximize total profit.
+Tujuan:
+- Memaksimalkan total profit.
 
-### Approach Summary
+#### Ringkasan Proses
+- Urutkan job berdasarkan profit terbesar (descending).
+- Untuk tiap job, cari slot hari paling akhir yang masih kosong dan masih <= deadline.
+- Jika tidak ada slot valid, job tidak dihitung.
 
-- Sort jobs by profit descending.
-- For each job, place it on the latest available day not exceeding its deadline.
-- This keeps earlier slots available for other jobs and maximizes total profit.
+Ringkasan cek Case 2:
+- Urutan profit: `A(100), C(27), D(25), B(19), E(15)`.
+- Slot tersedia hari `1..3`.
+- `A` masuk hari 2, `C` masuk hari 1, `E` masuk hari 3.
+- `D` dan `B` gagal masuk karena slot deadline-nya sudah terisi.
+- Job optimal `{A,C,E}` dengan total profit `142`.
 
-### Logic Diagram (Mermaid)
+Catatan urutan tampilan:
+- Bisa terlihat `ACE` atau `CAE` tergantung cara menampilkan (slot hari vs urutan proses).
+- Yang terpenting adalah kombinasi job valid dan profit maksimal tetap sama.
+
+#### Diagram Logika
 
 ```mermaid
 flowchart LR
@@ -204,15 +253,11 @@ flowchart LR
     K --> L["End"]
 ```
 
-### Result
-
-Run:
+#### Hasil
 
 ```bash
 php q4_job_sequencing.php
 ```
-
-Output:
 
 ```text
 Case 1 sequence: [C, A]
@@ -222,28 +267,31 @@ Case 2 sequence: [C, A, E]
 Case 2 max profit: 142
 ```
 
-## Q5 - Group Anagrams
+---
 
-### Problem Explanation
+### 5) `q5_group_anagram.php`
 
-Given a list of words, group words that are anagrams.
-Anagrams have exactly the same letters with different order.
+#### Penjelasan Soal
+Kelompokkan kata-kata yang merupakan anagram.
 
-Input used:
+Input:
 - `["bat", "tab", "tap", "pat", "cat"]`
 
-Expected grouping example:
+Contoh grup yang benar:
 - `["bat", "tab"]`
 - `["tap", "pat"]`
 - `["cat"]`
 
-### Approach Summary
+#### Ringkasan Proses
+- Tiap kata diubah menjadi key dengan cara mengurutkan huruf.
+- Kata dengan key sama masuk ke grup yang sama.
+- Contoh:
+  - `bat -> abt`
+  - `tab -> abt` (masuk grup yang sama dengan `bat`)
+  - `tap -> apt`, `pat -> apt` (satu grup)
+  - `cat -> act` (grup sendiri)
 
-- Convert each word into a canonical key by sorting its letters.
-- Use the sorted key as bucket/group identifier.
-- Words with the same key are stored in the same group.
-
-### Logic Diagram (Mermaid)
+#### Diagram Logika
 
 ```mermaid
 flowchart LR
@@ -258,15 +306,11 @@ flowchart LR
     H --> I["End"]
 ```
 
-### Result
-
-Run:
+#### Hasil
 
 ```bash
 php q5_group_anagram.php
 ```
-
-Output:
 
 ```text
 Input: [bat, tab, tap, pat, cat]
@@ -275,3 +319,12 @@ Grouped anagrams:
 [tap, pat]
 [cat]
 ```
+
+## Output Kunci
+
+- Q1: `906609 = 993 x 913`
+- Q2: total kombinasi valid `24`
+- Q3: urutan terpanjang `[1, 2, 3, 4, 5, 6]`
+- Q4 Case 1: profit `60`
+- Q4 Case 2: profit `142`
+- Q5: `[["bat","tab"],["tap","pat"],["cat"]]`

@@ -59,3 +59,18 @@ Output:
 Largest palindrome: 906609
 Factors: 993 x 913
 ```
+
+## Q2 - Combination Sum (Use each element at most once)
+
+### Problem Explanation
+
+Given an integer array and an integer target `K`, find all unique combinations where the sum equals `K`.
+Input used:
+- `array = [5, 6, 14, 15, 18, 20, 10, 4, 3, 9, 13]`
+- `K = 40`
+
+### Approach Summary
+
+- Use backtracking with two choices at every index: pick or skip.
+- Save combination when current sum is exactly `40`.
+- Stop a branch when sum becomes greater than `40`.

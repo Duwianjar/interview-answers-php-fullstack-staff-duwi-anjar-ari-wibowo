@@ -161,3 +161,63 @@ Output:
 Input: [100, 4, 200, 1, 3, 2, 2, 5, 6]
 Longest consecutive sequence: [1, 2, 3, 4, 5, 6]
 ```
+
+## Q4 - Job Sequencing for Maximum Profit
+
+### Problem Explanation
+
+Each job has:
+- `id`
+- `deadline`
+- `profit`
+
+Rules:
+- Each job takes exactly 1 day.
+- Only 1 job can be done per day.
+- A job contributes profit only if scheduled on or before its deadline.
+
+Goal:
+- Choose and schedule jobs to maximize total profit.
+
+### Approach Summary
+
+- Sort jobs by profit descending.
+- For each job, place it on the latest available day not exceeding its deadline.
+- This keeps earlier slots available for other jobs and maximizes total profit.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Sort jobs by profit descending"]
+    B --> C["Find max deadline"]
+    C --> D["Create empty slots[1..maxDeadline]"]
+    D --> E["For each job"]
+    E --> F["Try day from deadline down to 1"]
+    F --> G{"slot available?"}
+    G -->|Yes| H["Place job and add profit"] --> E
+    G -->|No| I{"more earlier day?"}
+    I -->|Yes| F
+    I -->|No| E
+    E --> J["Read filled slots as sequence"]
+    J --> K["Output sequence and max profit"]
+    K --> L["End"]
+```
+
+### Result
+
+Run:
+
+```bash
+php q4_job_sequencing.php
+```
+
+Output:
+
+```text
+Case 1 sequence: [C, A]
+Case 1 max profit: 60
+
+Case 2 sequence: [C, A, E]
+Case 2 max profit: 142
+```

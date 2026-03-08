@@ -26,3 +26,21 @@ Task:
 - Check all multiplication pairs of 3-digit numbers.
 - Keep only products that are palindrome.
 - Track the largest palindrome value found.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Set maxPalindrome=0, factorA=0, factorB=0"]
+    B --> C["Loop i from 999 down to 100"]
+    C --> D["Loop j from i down to 100"]
+    D --> E["product = i * j"]
+    E --> F{"product <= maxPalindrome?"}
+    F -->|Yes| D2["Break inner loop"] --> C
+    F -->|No| G{"Is product palindrome?"}
+    G -->|No| D
+    G -->|Yes| H["Update maxPalindrome and factors"]
+    H --> D
+    C --> I["Return maxPalindrome and factors"]
+    I --> J["End"]
+```

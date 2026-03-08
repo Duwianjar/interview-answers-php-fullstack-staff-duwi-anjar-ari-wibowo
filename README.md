@@ -146,3 +146,18 @@ flowchart LR
     J --> K["Output longest consecutive sequence"]
     K --> L["End"]
 ```
+
+### Result
+
+Run:
+
+```bash
+php q3_longest_consecutive.php
+```
+
+Output:
+
+```text
+Input: [100, 4, 200, 1, 3, 2, 2, 5, 6]
+Longest consecutive sequence: [1, 2, 3, 4, 5, 6]
+```

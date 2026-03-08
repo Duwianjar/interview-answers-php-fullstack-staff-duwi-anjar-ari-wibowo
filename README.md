@@ -203,3 +203,21 @@ flowchart LR
     J --> K["Output sequence and max profit"]
     K --> L["End"]
 ```
+
+### Result
+
+Run:
+
+```bash
+php q4_job_sequencing.php
+```
+
+Output:
+
+```text
+Case 1 sequence: [C, A]
+Case 1 max profit: 60
+
+Case 2 sequence: [C, A, E]
+Case 2 max profit: 142
+```

@@ -44,3 +44,18 @@ flowchart LR
     C --> I["Return maxPalindrome and factors"]
     I --> J["End"]
 ```
+
+### Result
+
+Run:
+
+```bash
+php q1_palindrome.php
+```
+
+Output:
+
+```text
+Largest palindrome: 906609
+Factors: 993 x 913
+```

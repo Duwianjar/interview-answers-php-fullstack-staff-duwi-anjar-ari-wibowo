@@ -257,3 +257,21 @@ flowchart LR
     C --> H["Return groups values"]
     H --> I["End"]
 ```
+
+### Result
+
+Run:
+
+```bash
+php q5_group_anagram.php
+```
+
+Output:
+
+```text
+Input: [bat, tab, tap, pat, cat]
+Grouped anagrams:
+[bat, tab]
+[tap, pat]
+[cat]
+```

@@ -184,3 +184,22 @@ Goal:
 - Sort jobs by profit descending.
 - For each job, place it on the latest available day not exceeding its deadline.
 - This keeps earlier slots available for other jobs and maximizes total profit.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Sort jobs by profit descending"]
+    B --> C["Find max deadline"]
+    C --> D["Create empty slots[1..maxDeadline]"]
+    D --> E["For each job"]
+    E --> F["Try day from deadline down to 1"]
+    F --> G{"slot available?"}
+    G -->|Yes| H["Place job and add profit"] --> E
+    G -->|No| I{"more earlier day?"}
+    I -->|Yes| F
+    I -->|No| E
+    E --> J["Read filled slots as sequence"]
+    J --> K["Output sequence and max profit"]
+    K --> L["End"]
+```

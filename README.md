@@ -109,3 +109,55 @@ Output summary:
 - First two combinations found by DFS order:
   - `[5, 6, 14, 15]`
   - `[5, 6, 15, 10, 4]`
+
+## Q3 - Longest Consecutive Sequence
+
+### Problem Explanation
+
+Given an unsorted integer array, find the longest sequence of consecutive numbers without counting duplicates more than once.
+Input used:
+- `[100, 4, 200, 1, 3, 2, 2, 5, 6]`
+
+Expected longest sequence:
+- `[1, 2, 3, 4, 5, 6]`
+
+### Approach Summary
+
+- Put all numbers into a set-like map to remove duplicate effect and allow fast lookup.
+- Only start counting from numbers that do not have a predecessor (`num-1`).
+- Expand forward (`num+1`) to compute sequence length.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Put all numbers into set"]
+    B --> C["bestStart=null, bestLength=0"]
+    C --> D["For each unique number"]
+    D --> E{"num-1 exists?"}
+    E -->|Yes| D
+    E -->|No| F["This is start of sequence"]
+    F --> G["Count forward while num+1 exists"]
+    G --> H{"length > bestLength?"}
+    H -->|Yes| I["Update bestStart and bestLength"]
+    H -->|No| D
+    I --> D
+    D --> J["Build result from bestStart"]
+    J --> K["Output longest consecutive sequence"]
+    K --> L["End"]
+```
+
+### Result
+
+Run:
+
+```bash
+php q3_longest_consecutive.php
+```
+
+Output:
+
+```text
+Input: [100, 4, 200, 1, 3, 2, 2, 5, 6]
+Longest consecutive sequence: [1, 2, 3, 4, 5, 6]
+```

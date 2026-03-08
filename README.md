@@ -59,3 +59,53 @@ Output:
 Largest palindrome: 906609
 Factors: 993 x 913
 ```
+
+## Q2 - Combination Sum (Use each element at most once)
+
+### Problem Explanation
+
+Given an integer array and an integer target `K`, find all unique combinations where the sum equals `K`.
+Input used:
+- `array = [5, 6, 14, 15, 18, 20, 10, 4, 3, 9, 13]`
+- `K = 40`
+
+### Approach Summary
+
+- Use backtracking with two choices at every index: pick or skip.
+- Save combination when current sum is exactly `40`.
+- Stop a branch when sum becomes greater than `40`.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Input nums and target K"]
+    B --> C["DFS(index=0, sum=0, current=[])"]
+    C --> D{"sum == K?"}
+    D -->|Yes| E["Save current combination"] --> X["Backtrack"]
+    D -->|No| F{"sum > K or index out of range?"}
+    F -->|Yes| X
+    F -->|No| G["Choose nums[index]"]
+    G --> H["DFS(index+1, sum+nums[index])"]
+    H --> I["Unchoose (pop)"]
+    I --> J["Skip nums[index]"]
+    J --> K["DFS(index+1, sum)"]
+    K --> X
+    X --> L["Continue DFS"]
+    L --> M["Output all valid combinations"]
+    M --> N["End"]
+```
+
+### Result
+
+Run:
+
+```bash
+php q2_combination_sum.php
+```
+
+Output summary:
+- Total combinations: `24`
+- First two combinations found by DFS order:
+  - `[5, 6, 14, 15]`
+  - `[5, 6, 15, 10, 4]`

@@ -126,3 +126,23 @@ Expected longest sequence:
 - Put all numbers into a set-like map to remove duplicate effect and allow fast lookup.
 - Only start counting from numbers that do not have a predecessor (`num-1`).
 - Expand forward (`num+1`) to compute sequence length.
+
+### Logic Diagram (Mermaid)
+
+```mermaid
+flowchart LR
+    A["Start"] --> B["Put all numbers into set"]
+    B --> C["bestStart=null, bestLength=0"]
+    C --> D["For each unique number"]
+    D --> E{"num-1 exists?"}
+    E -->|Yes| D
+    E -->|No| F["This is start of sequence"]
+    F --> G["Count forward while num+1 exists"]
+    G --> H{"length > bestLength?"}
+    H -->|Yes| I["Update bestStart and bestLength"]
+    H -->|No| D
+    I --> D
+    D --> J["Build result from bestStart"]
+    J --> K["Output longest consecutive sequence"]
+    K --> L["End"]
+```
